@@ -3,8 +3,8 @@ let formData = { email: '', message: '' };
 const formElem = document.querySelector('.feedback-form');
 
 formElem.addEventListener('input', e => {
-  formData.email = e.currentTarget.email.value;
-  formData.message = e.currentTarget.message.value;
+  formData.email = formElem.email.value;
+  formData.message = formElem.message.value;
   saveToLS('feedback-form-state', formData);
 });
 
