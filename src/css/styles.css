@@ -13,3 +13,5 @@
 /* Sections style */
 @import url('./header.css');
 @import url('./back-link.css');
+@import 'simplelightbox/dist/simple-lightbox.min.css';
+@import url('./1-gallery.css');
