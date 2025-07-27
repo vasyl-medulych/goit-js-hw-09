@@ -6,7 +6,7 @@ body {
 }
 .gallery {
   background: #fff;
-  padding: 24pxgit a 0px;
+  padding: 24px 0px;
   display: flex;
   flex-wrap: wrap;
   gap: 24px;
