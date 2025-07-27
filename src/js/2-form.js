@@ -3,8 +3,6 @@ let formData = { email: '', message: '' };
 document.addEventListener('DOMContentLoaded', () => {
   const formElem = document.querySelector('.feedback-form');
 
-  if (!formElem) return; //test
-
   formElem.addEventListener('input', e => {
     formData.email = e.currentTarget.elements.email.value;
     formData.message = e.currentTarget.elements.message.value;
