@@ -4,8 +4,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const formElem = document.querySelector('.feedback-form');
 
   formElem.addEventListener('input', e => {
-    formData.email = formElem.email.value;
-    formData.message = formElem.message.value;
+    formData.email = formElem.elements.email.value;
+    formData.message = formElem.elements.message.value;
     saveToLS('feedback-form-state', formData);
   });
 
