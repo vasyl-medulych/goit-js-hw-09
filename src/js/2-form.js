@@ -3,16 +3,9 @@ let formData = { email: '', message: '' };
 document.addEventListener('DOMContentLoaded', () => {
   const formElem = document.querySelector('.feedback-form');
 
-  formElem.addEventListener('input', e => {
-    if (
-      lsData &&
-      typeof lsData === 'object' &&
-      lsData.email !== undefined &&
-      lsData.message !== undefined
-    ) {
-      saveToLS('feedback-form-state', formData);
-    }
+  if (!formElem) return;
 
+  formElem.addEventListener('input', e => {
     formData.email = e.currentTarget.elements.email.value;
     formData.message = e.currentTarget.elements.message.value;
     saveToLS('feedback-form-state', formData);
@@ -22,8 +15,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   try {
     formData = lsData;
-    formElem.elements.email.value = lsData.email;
-    formElem.elements.message.value = lsData.message;
+    formElem.elements.email.value = lsData.email || '';
+    formElem.elements.message.value = lsData.message || '';
   } catch {}
 });
 
