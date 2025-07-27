@@ -13,11 +13,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const lsData = getFromLS('feedback-form-state');
 
-  try {
-    formData = lsData;
+  if (lsData) {
+    formData = { ...formData, ...lsData };
     formElem.elements.email.value = lsData.email || '';
     formElem.elements.message.value = lsData.message || '';
-  } catch {}
+  }
 });
 
 function saveToLS(key, value) {
