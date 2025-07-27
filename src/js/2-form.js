@@ -1,15 +1,16 @@
 let formData = { email: '', message: '' };
 
-const formElem = document.querySelector('.feedback-form');
-
-formElem.addEventListener('input', e => {
-  formData.email = formElem.email.value;
-  formData.message = formElem.message.value;
-  saveToLS('feedback-form-state', formData);
-});
-
 document.addEventListener('DOMContentLoaded', () => {
+  const formElem = document.querySelector('.feedback-form');
+
+  formElem.addEventListener('input', e => {
+    formData.email = formElem.email.value;
+    formData.message = formElem.message.value;
+    saveToLS('feedback-form-state', formData);
+  });
+
   const lsData = getFromLS('feedback-form-state');
+
   try {
     formData = lsData;
     formElem.elements.email.value = lsData.email;
