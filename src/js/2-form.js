@@ -11,7 +11,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const lsData = getFromLS('feedback-form-state');
 
-  formData = { ...formData, ...lsData };
+  if (lsData && typeof lsData === 'object') {
+    formData = { ...formData, ...lsData };
+  } else {
+    formData = { email: '', message: '' };
+  }
   formElem.elements.email.value = lsData.email || '';
   formElem.elements.message.value = lsData.message || '';
 
@@ -23,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
       alert('Не заповнені дані');
       return;
     }
-    console.log(email, message);
+    console.log(formData);
     localStorage.removeItem('feedback-form-state');
     formElem.reset();
     formData = { email: '', message: '' };
@@ -37,6 +41,9 @@ function saveToLS(key, value) {
 
 function getFromLS(key, defaultValue) {
   const jsonData = localStorage.getItem(key);
+  if (jsonData === null) {
+    return defaultValue;
+  }
   try {
     const data = JSON.parse(jsonData);
     return data;
