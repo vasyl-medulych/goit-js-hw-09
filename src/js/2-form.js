@@ -3,21 +3,23 @@ let formData = { email: '', message: '' };
 document.addEventListener('DOMContentLoaded', () => {
   const formElem = document.querySelector('.feedback-form');
 
+  const lsData = getFromLS('feedback-form-state', { email: '', message: '' });
+
+  if (lsData && typeof lsData === 'object') {
+    formData.email = lsData.email;
+    formData.message = lsData.message;
+  } else {
+    formData.email = '';
+    formData.message = '';
+  }
+  formElem.elements.email.value = formData.email;
+  formElem.elements.message.value = formData.message;
+
   formElem.addEventListener('input', e => {
     formData.email = e.currentTarget.elements.email.value.trim();
     formData.message = e.currentTarget.elements.message.value.trim();
     saveToLS('feedback-form-state', formData);
   });
-
-  const lsData = getFromLS('feedback-form-state');
-
-  if (lsData && typeof lsData === 'object') {
-    formData = { ...formData, ...lsData };
-  } else {
-    formData = { email: '', message: '' };
-  }
-  formElem.elements.email.value = lsData.email || '';
-  formElem.elements.message.value = lsData.message || '';
 
   formElem.addEventListener('submit', e => {
     e.preventDefault();
